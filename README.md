@@ -7,6 +7,8 @@
 
 This project involves a detailed analysis of funding trends for technology and vocational education across the United States, utilizing the 2019 - 2020 data from the Local Education Agency (LEA) Finance Survey provided by the National Center for Education Statistics (NCES).
 
+Click here to run the visualizations notebook in a virtual environment: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb)
+
 ## Repository Structure
 
 - `LEA_School_District_Finance_Survey.ipynb`: The Jupyter Notebook will contain the complete analysis pipeline, from data cleaning to exploratory data analysis.
