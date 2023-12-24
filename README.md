@@ -1,54 +1,52 @@
 # NCES_Data_Set  
-# Analysis of US Tech & Vocational Education Funding
+# Comprehensive Analysis of US Tech & Vocational Education Funding (2010-2020)
 
-### NOTE: This project is still in the beginning stages.
+### Project Status: Advanced Stages of Analysis
 
-## Overview
+## Project Overview
 
-This project involves a detailed analysis of funding trends for technology and vocational education across the United States, utilizing the 2019 - 2020 data from the Local Education Agency (LEA) Finance Survey provided by the National Center for Education Statistics (NCES).
+This repository documents a deep dive into a decade of US tech and vocational education funding and expenditures, leveraging data from the Local Education Agency (LEA) Finance Survey by the National Center for Education Statistics (NCES). It showcases an end-to-end data analysis workflow from database design to insightful visualizations.
 
-Click here to run the visualizations notebook in a virtual environment: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb)
+## Repository Contents
 
-## Repository Structure
+- `src/`: Jupyter Notebooks with complete analysis pipeline and Python scripts for data visualizations.
+- `PDF Documentation/`: NCES dataset documentation providing crucial context and ERD Diagram showing the structure of the database.
+- `SQL Queries/`: SQL scripts used to extract and analyze the data.
+- `Local Education Agency Finance Survey – School District Data ERD.pdf`: A comprehensive Entity-Relationship Diagram (ERD) showcasing the database design.
 
-- `LEA_School_District_Finance_Survey.ipynb`: The Jupyter Notebook will contain the complete analysis pipeline, from data cleaning to exploratory data analysis.
-- `2022304_FY20F33_Documentation.pdf`: Documentation from the NCES that provides context and details about the dataset.
-- `LEA Local Finance Survey – School District Data 2019 – 2020 – Column Mapping.xlsx`: An XLSX file that outlines the original and new column names, their data types, and descriptions.
-- `Local Education Agency Finance Survey – School District Data ERD.pdf`: An Entity-Relationship Diagram (ERD) depicting the database design intended for this dataset.
+## Features
 
-## Data Analysis Workflow
+- Detailed PostgreSQL database design for robust data management.
+- Advanced data cleaning, transformation, and normalization in Python.
+- Interactive visualizations created with Plotly to identify and communicate funding patterns.
+- Statistical analysis to uncover trends and growth rates.
 
-The Jupyter Notebook is the heart of this analysis. It includes:
+## Interactive Notebook in Binder
 
-1. **Data Cleaning**: Standardizing column names based on the provided column mapping and handling missing or inconsistent data.
-2. **Data Transformation**: Pivoting the data from a wide to a long format to enhance readability and facilitate analysis.
-3. **Normalization Techniques**: Applying Z-Score Standardization and Min/Max Scaling to the data for consistent comparison across different scales.
-4. **Preliminary Visualization**: Initial steps to visualize the cleaned data are outlined for users to follow and apply in their preferred visualization tool.
+For a hands-on experience with the project's data visualizations, you can run the Jupyter Notebook in your web browser via Binder. Click on the Binder badge below or [click here](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb) to launch a virtual environment where you can interact with the notebook and explore the visualizations without any local setup. This environment is fully configured to mirror the project's requirements, ensuring a seamless user experience.
 
-## Getting Started
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb)
 
-To explore this analysis:
 
-1. Clone this repository to your local environment.
-2. Install any required dependencies listed at the top of the Jupyter Notebook.
-3. Open the `LEA_School_District_Finance_Survey.ipynb` notebook in Jupyter Lab or Jupyter Notebook.
-4. Refer to `2022304_FY20F33_Documentation.pdf` for additional context on the dataset and analysis.
-5. Review `LEA Local Finance Survey – School District Data 2019 – 2020 – Column Mapping.xlsx` to understand the dataset's schema changes.
-6. Examine `Local Education Agency Finance Survey – School District Data ERD.pdf` to understand the intended database structure.
+## Setup
 
-## Goals and Intentions
+To get started with this analysis:
 
-The purpose of this project is to provide a transparent, analytical look at the distribution and utilization of funds in US tech and vocational education. It sets the stage for potential predictive modeling to forecast future funding trends.
+1. Clone this repository.
+2. Install dependencies listed in `requirements.txt`.
+3. Open the Jupyter Notebooks to walk through the analysis steps.
+4. Use the PDF documentation for additional context on the dataset.
+5. Examine the ERD for insights into the database structure.
 
-## Contributions
+## Key Insights
 
-This project is designed for educational and informational purposes and is not currently set up for collaborative contributions. However, feedback, questions, and discussion are welcome. Please feel free to raise an issue or suggest improvements.
+The analysis revealed a 114.38% increase in cost per student from 2014 to 2016, driven by new expenditure categories. A spike of 7.35% in teacher salaries for vocational education in 2020 suggests substantial growth.
 
-## Questions and Contact
+## Future Work
 
-Should you have any questions regarding this analysis, please open an issue in this repository, and I'll be happy to engage in a conversation.
+The next phase will introduce machine learning models to forecast funding trends based on historical data, furthering the depth of the analysis.
 
 ## Acknowledgments
 
-- National Center for Education Statistics (NCES) for providing the data.
-- Open-source projects that made this analysis possible: Python, Jupyter, and the various libraries used in the analysis.
+- Data: Provided by the National Center for Education Statistics (NCES).
+- Tools: Python, Jupyter, Plotly, PostgreSQL, and other open-source libraries.
