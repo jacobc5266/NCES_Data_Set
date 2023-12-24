@@ -1,0 +1,20 @@
+name: Check database_setup_bool Setting
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  check-db-setting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check database_setup_bool value in Jupyter Notebook
+      run: |
+        if grep -q "database_setup_bool = True" src/LEA_Finance_Data_Visualizations_v2.ipynb; then
+          echo "::error::database_setup_bool must be set to False before merging"
+          exit 1
+        fi
