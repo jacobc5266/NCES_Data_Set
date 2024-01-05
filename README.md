@@ -23,10 +23,12 @@ This repository documents a deep dive into a decade of US tech and vocational ed
 
 ## Interactive Notebook in Binder
 
-For a hands-on experience with the project's data visualizations, you can run the Jupyter Notebook in your web browser via Binder. Click on the Binder badge below or [click here](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb) to launch a virtual environment where you can interact with the notebook and explore the visualizations without any local setup. This environment is fully configured to mirror the project's requirements, ensuring a seamless user experience.
+For a hands-on experience with the project's data visualizations, you can run the Jupyter Notebook in your web browser via Binder. Click on the Binder badge below to launch a virtual environment where you can interact with the notebook and explore the visualizations without any local setup. This environment is fully configured to mirror the project's requirements, ensuring a seamless user experience.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Visualizations_v2.ipynb)
+National Level Analysis:  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_National_Level_Analysis.ipynb)
 
+**Note:** It might take a few minutes for Binder to set up the environment. Please be patient. Once the notebook runs, you only need to press the "Restart Kernel and Run All Cells" button to execute the notebook.
 
 ## Setup
 
