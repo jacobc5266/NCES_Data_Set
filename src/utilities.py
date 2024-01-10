@@ -92,7 +92,7 @@ class Utilities:
         return df
 
 
-        ############################## Aggregate Functions ##############################
+############################## Aggregate Functions ##############################
 
     def get_year_total(self, df: pd.DataFrame, year: int, column_name: str):
         """
@@ -109,7 +109,6 @@ class Utilities:
 
         total = df[df['year'] == year][column_name].sum()
         return total
-
     
     def calculate_total_difference(self, amount1, amount2):
         """
@@ -141,15 +140,16 @@ class Utilities:
             return None  # Avoid division by zero
         return ((final_amount - initial_amount) / initial_amount) * 100
     
-    def calculate_mean_growth_rate(self, df: pd.DataFrame, expenditure_title: Optional[str] = None, start_year : int = None, end_year : int = None) -> float:
+    def calculate_mean_growth_rate(self, df: pd.DataFrame, start_year : int = None, end_year : int = None, expenditure_title: Optional[str] = None, region: Optional[str] = None) -> float:
         """
         Calculates the mean growth rate for a given expenditure title and year range.
 
         Parameters:
         df (pd.DataFrame): DataFrame to search in.
-        expenditure_title (str, optional): The title of the expenditure to filter by. Default is None.
         start_year (int): The start of the year range.
         end_year (int): The end of the year range.
+        expenditure_title (str, optional): The title of the expenditure to filter by. Default is None.
+        region (str, optional): The region to filter by. Default is None.
 
         Returns:
         float: Mean growth rate for the specified expenditure title and year range.
@@ -158,6 +158,11 @@ class Utilities:
         if expenditure_title:
             filtered_data = df[
                 (df['expenditure_title'] == expenditure_title) &
+                df['year'].between(start_year, end_year)
+            ]
+        elif region:
+            filtered_data = df[
+                (df['region'] == region) &
                 df['year'].between(start_year, end_year)
             ]
         else:
