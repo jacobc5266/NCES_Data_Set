@@ -28,6 +28,9 @@ Experience the project's data visualizations interactively through Binder-hosted
 National Level Analysis:  
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_National_Level_Analysis.ipynb)
 
+Regional Level Analysis:  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_Regional_Level_Analysis.ipynb)
+
 **Please Note:** Binder may take a few moments to prepare the environment. I appreciate your patience. Upon loading, execute the notebook by selecting "Restart Kernel and Run All Cells" to see the analysis in action.
 
 ## Setup
