@@ -8,12 +8,15 @@
 CREATE OR REPLACE VIEW revenue.funding_view AS
 WITH federal_funding AS (
     SELECT 
-        census_id, 
-        DATE_PART('year', year) AS year, 
-        revenue_title, 
-        revenue AS revenue_amount,
+        fed.census_id,
+		e.state,
+        DATE_PART('year', fed.year) AS year, 
+        fed.revenue_title, 
+        fed.revenue AS revenue_amount,
         'federal' AS funding_source
-    FROM revenue.federal_revenue
+    FROM revenue.federal_revenue AS fed
+	INNER JOIN entity.entity AS e
+	ON fed.census_id = e.census_id
     WHERE revenue_title IN (
                             'math_science_teacher_quality_thru_state',
                             '21st_century_learning_centers_thru_state',
@@ -33,12 +36,15 @@ WITH federal_funding AS (
 
 state_funding AS (
     SELECT 
-        census_id, 
-        DATE_PART('year', year) AS year, 
-        revenue_title, 
-        revenue AS revenue_amount,
+        st.census_id,
+		e.state,
+        DATE_PART('year', st.year) AS year, 
+        st.revenue_title, 
+        st.revenue AS revenue_amount,
         'state' AS funding_source
-    FROM revenue.state_revenue
+    FROM revenue.state_revenue AS st
+	INNER JOIN entity.entity AS e
+	ON st.census_id = e.census_id
     WHERE revenue_title IN (
                             'bilingual_education_state',
                             'compensatory_basic_skills_programs',
