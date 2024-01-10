@@ -5,50 +5,46 @@
 
 ## Project Overview
 
-This repository documents a deep dive into a decade of US tech and vocational education funding and expenditures, leveraging data from the Local Education Agency (LEA) Finance Survey by the National Center for Education Statistics (NCES). It showcases an end-to-end data analysis workflow from database design to insightful visualizations.
+This repository encapsulates an in-depth analysis of a decade's worth of US technical and vocational education funding data, sourced from the National Center for Education Statistics' Local Education Agency (LEA) Finance Survey. It demonstrates a sophisticated data analysis workflow, from crafting a PostgreSQL database to creating nuanced visualizations that render complex data into intelligible insights.
 
 ## Repository Contents
 
-- `src/`: Jupyter Notebooks with complete analysis pipeline and Python scripts for data visualizations.
-- `PDF Documentation/`: NCES dataset documentation providing crucial context and ERD Diagram showing the structure of the database.
-- `SQL Queries/`: SQL scripts used to extract and analyze the data.
-- `Local Education Agency Finance Survey – School District Data ERD.pdf`: A comprehensive Entity-Relationship Diagram (ERD) showcasing the database design.
+- `src/`: Jupyter Notebooks detailing the analytical pipeline with Python scripts for data processing and visualization.
+- `PDF Documentation/`: In-depth dataset documentation from NCES and an Entity-Relationship Diagram (ERD) outlining the database architecture.
+- `SQL Queries/`: SQL scripts crafted for precise data extraction and rigorous analysis.
+- `Local Education Agency Finance Survey – School District Data ERD.pdf`: Detailed ERD visualizing the relational database design.
 
 ## Features
 
-- Detailed PostgreSQL database design for robust data management.
-- Advanced data cleaning, transformation, and normalization in Python.
-- Interactive visualizations created with Plotly to identify and communicate funding patterns.
-- Statistical analysis to uncover trends and growth rates.
+- A meticulously designed PostgreSQL database ensuring efficient data handling.
+- Comprehensive Python-based data cleansing, ETL processes, and normalization techniques.
+- Interactive, Plotly-based visualizations that highlight trends and funding trajectories in an engaging manner.
+- Statistical analysis techniques applied to draw out patterns, growth rates, and significant fluctuations in funding streams.
 
-## Interactive Notebook in Binder
+## Interactive Notebooks
 
-For a hands-on experience with the project's data visualizations, you can run the Jupyter Notebook in your web browser via Binder. Click on the Binder badge below to launch a virtual environment where you can interact with the notebook and explore the visualizations without any local setup. This environment is fully configured to mirror the project's requirements, ensuring a seamless user experience.
+Experience the project's data visualizations interactively through Binder-hosted Jupyter Notebooks. Click the corresponding Binder badges to launch a virtual instance where you can run and interact with the notebooks directly from your browser, no local setup required.
 
 National Level Analysis:  
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jacobc5266/NCES_Data_Set/main?labpath=src%2FLEA_Finance_Data_National_Level_Analysis.ipynb)
 
-**Note:** It might take a few minutes for Binder to set up the environment. Please be patient. Once the notebook runs, you only need to press the "Restart Kernel and Run All Cells" button to execute the notebook.
+**Please Note:** Binder may take a few moments to prepare the environment. I appreciate your patience. Upon loading, execute the notebook by selecting "Restart Kernel and Run All Cells" to see the analysis in action.
 
 ## Setup
 
-To get started with this analysis:
+To delve into this analysis:
 
-1. Clone this repository.
-2. Install dependencies listed in `requirements.txt`.
-3. Open the Jupyter Notebooks to walk through the analysis steps.
-4. Use the PDF documentation for additional context on the dataset.
-5. Examine the ERD for insights into the database structure.
+1. Clone the repository to your local machine.
+2. Install the necessary libraries as specified in `requirements.txt`.
+3. Navigate through the Jupyter Notebooks for a step-by-step breakdown of the analyses.
+4. Refer to the PDF documentation for a deeper understanding of the dataset nuances.
+5. Review the ERD to comprehend the database schema.
 
 ## Key Insights
 
-The analysis revealed a 114.38% increase in cost per student from 2014 to 2016, driven by new expenditure categories. A spike of 7.35% in teacher salaries for vocational education in 2020 suggests substantial growth.
-
-## Future Work
-
-The next phase will introduce machine learning models to forecast funding trends based on historical data, furthering the depth of the analysis.
+A noteworthy finding is the substantial 114.38% increase in the cost per student between 2014 and 2016, largely attributable to the introduction of new expenditure categories. The analysis also discerns a significant growth in teacher salaries for vocational education, marked by a 7.35% upswing in 2020.
 
 ## Acknowledgments
 
-- Data: Provided by the National Center for Education Statistics (NCES).
-- Tools: Python, Jupyter, Plotly, PostgreSQL, and other open-source libraries.
+- Data: Sourced from the National Center for Education Statistics (NCES).
+- Tools: Utilized Python, Jupyter, Plotly, PostgreSQL, among other open-source software.
