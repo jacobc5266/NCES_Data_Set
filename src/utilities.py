@@ -47,6 +47,7 @@ class Utilities:
             return conn
         except Exception as e:
             print(f"Failed to connect to database. Error: {e}")
+            return False
 
 
     ############################## Query Database to DataFrame ##############################
@@ -140,7 +141,9 @@ class Utilities:
             return None  # Avoid division by zero
         return ((final_amount - initial_amount) / initial_amount) * 100
     
-    def calculate_mean_growth_rate(self, df: pd.DataFrame, start_year : int = None, end_year : int = None, expenditure_title: Optional[str] = None, region: Optional[str] = None) -> float:
+
+    def calculate_mean_growth_rate(self, df: pd.DataFrame, start_year: int = None, end_year: int = None, 
+                                expenditure_title: Optional[str] = None, region: Optional[str] = None) -> float:
         """
         Calculates the mean growth rate for a given expenditure title and year range.
 
@@ -154,20 +157,26 @@ class Utilities:
         Returns:
         float: Mean growth rate for the specified expenditure title and year range.
         """
+        
+        # Ensure year values are integers
+        start_year = int(start_year)
+        end_year = int(end_year)
 
+        # Initialize the filter condition for the year range
+        year_condition = (df['year'] >= start_year) & (df['year'] <= end_year)
+        
+        # Apply additional filters based on provided arguments
         if expenditure_title:
-            filtered_data = df[
-                (df['expenditure_title'] == expenditure_title) &
-                df['year'].between(start_year, end_year)
-            ]
+            condition = (df['expenditure_title'] == expenditure_title) & year_condition
         elif region:
-            filtered_data = df[
-                (df['region'] == region) &
-                df['year'].between(start_year, end_year)
-            ]
+            condition = (df['region'] == region) & year_condition
         else:
-            filtered_data = df[df['year'].between(start_year, end_year)]
+            condition = year_condition
 
+        # Apply filter to DataFrame
+        filtered_data = df[condition]
+
+        # Calculate mean growth rate
         mean_growth_rate = filtered_data['growth_rate'].mean()
         return mean_growth_rate
 
