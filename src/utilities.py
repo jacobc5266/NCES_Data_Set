@@ -4,7 +4,7 @@ import os
 import json
 import psycopg2
 from psycopg2 import OperationalError
-from typing import Optional
+from typing import Optional, Union, List
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
@@ -166,7 +166,9 @@ class Utilities:
         year_condition = (df['year'] >= start_year) & (df['year'] <= end_year)
         
         # Apply additional filters based on provided arguments
-        if expenditure_title:
+        if expenditure_title and region:  # Check for both filters first
+            condition = (df['region'] == region) & (df['expenditure_title'] == expenditure_title) & year_condition
+        elif expenditure_title:  # Then check individual conditions
             condition = (df['expenditure_title'] == expenditure_title) & year_condition
         elif region:
             condition = (df['region'] == region) & year_condition
@@ -188,8 +190,7 @@ class Utilities:
     They allow for easy customization and quick generation of complex visualizations, streamlining the data presentation process.
     """
 
-    def make_bar_chart_grid(self, df : pd.DataFrame, x : str, y : str, 
-                            color : str, facet_col : str, facet_col_wrap : int, title : str) -> go.Figure:
+    def make_bar_chart_grid(self, df: pd.DataFrame, x: str, y: str, color: str, facet_col: str, facet_col_wrap: int, title: str, hover_data: Optional[Union[List[str], dict]] = None) -> go.Figure:
         """
         Creates a grid of bar charts using Plotly Express.
 
@@ -201,50 +202,54 @@ class Utilities:
         facet_col (str): The name of the column to create separate plots for each unique value.
         facet_col_wrap (int): The number of charts per row.
         title (str): The title of the plot.
+        hover_data (Optional[Union[List[str], dict]]): Additional data to display on hover. Can be a list of column names or a dictionary mapping column names to hover data labels.
 
         Returns:
         go.Figure: A Plotly graph object representing the bar chart grid.
         """
 
-        bar_plot_grid = px.bar(df, 
-                    x= x, 
-                    y= y,
-                    facet_col= facet_col,
-                    facet_col_wrap= facet_col_wrap,
-                    color= color
-                    )
+        bar_plot_grid = px.bar(
+            df,
+            x=x,
+            y=y,
+            color=color,
+            facet_col=facet_col,
+            facet_col_wrap=facet_col_wrap,
+            title=title,
+            hover_data=hover_data  # Add hover_data to the function call
+        )
 
         # Update layout with given title and additional layout arguments
-        bar_plot_grid.update_layout(title_text= title,
-                                    title={
-                                        'y':0.98,  # The position of the title can be adjusted with the y parameter
-                                        'x':0.5,
-                                        'xanchor': 'center',
-                                        'yanchor': 'top'
-                                        },
-                                    height=800,
-                                    width=1050, 
-                                    legend=dict(
-                                        orientation="h",
-                                        yanchor="bottom",
-                                        y=-0.5,  # Adjusted position
-                                        xanchor="center",
-                                        x=0.5
-                                        ),
-                                    margin=dict(l=40, r=40, t=80, b=200),  # Increase the top margin for padding
-                                    hoverlabel=dict(
-                                        bgcolor="white",
-                                        font_size=16,
-                                        font_family="Calibri"
-                                        )
-                                    )
+        bar_plot_grid.update_layout(
+            title_text=title,
+            title={
+                'y': 0.98,  # The position of the title can be adjusted with the y parameter
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            },
+            height=800,
+            width=1050,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.5,  # Adjusted position
+                xanchor="center",
+                x=0.5
+            ),
+            margin=dict(l=40, r=40, t=80, b=200),  # Increase the top margin for padding
+            hoverlabel=dict(
+                bgcolor="white",
+                font_size=16,
+                font_family="Calibri"
+            )
+        )
 
         bar_plot_grid.update_annotations(font_size=10)  # Reduce font size for subplot titles
         
         return bar_plot_grid
     
-    def make_line_plot_grid(self, df : pd.DataFrame, x : str, y : str, 
-                        color : str, facet_col : str, facet_col_wrap : int, title : str) -> go.Figure:
+    def make_line_plot_grid(self, df: pd.DataFrame, x: str, y: str, color: str, facet_col: str, facet_col_wrap: int, title: str, hover_data: Optional[Union[List[str], dict]] = None) -> go.Figure:
         """
         Creates a grid of line charts using Plotly Express.
 
@@ -256,6 +261,7 @@ class Utilities:
         facet_col (str): The name of the column to create separate plots for each unique value.
         facet_col_wrap (int): The number of charts per row.
         title (str): The title of the plot.
+        hover_data (Optional[Union[List[str], dict]]): Additional data to display on hover. Can be a list of column names or a dictionary mapping column names to hover data labels.
 
         Returns:
         go.Figure: A Plotly graph object representing the line plot grid.
@@ -264,44 +270,46 @@ class Utilities:
         # Create the grid of line charts
         line_plot_grid = px.line(
             df,
-            x= x,
-            y= y,  
-            color= color,
-            facet_col= facet_col,  # Creates a separate plot for each region
-            facet_col_wrap= facet_col_wrap,    # Adjust this to control how many charts per row
-            title= title
+            x=x,
+            y=y,
+            color=color,
+            facet_col=facet_col,  # Creates a separate plot for each region
+            facet_col_wrap=facet_col_wrap,  # Adjust this to control how many charts per row
+            title=title,
+            hover_data=hover_data  # Add hover_data to the function call
         )
 
         # Update layout with given title and additional layout arguments
         line_plot_grid.update_layout(title_text=title,
-                                title={
-                                    'y':0.98,  # The position of the title can be adjusted with the y parameter
-                                    'x':0.5,
-                                    'xanchor': 'center',
-                                    'yanchor': 'top'
-                                    },
-                                    height=800,
-                                    width=1050, 
-                                    legend=dict(
-                                        orientation="h",
-                                        yanchor="bottom",
-                                        y=-0.5,  # Adjusted position
-                                        xanchor="center",
-                                        x=0.5
-                                        ),
-                                    margin=dict(l=40, r=40, t=80, b=200),  # Increase the top margin for padding
-                                    hoverlabel=dict(
-                                        bgcolor="white",
-                                        font_size=16,
-                                        font_family="Calibri"
-                                        )
-                                    )
+                                     title={
+                                         'y': 0.98,  # The position of the title can be adjusted with the y parameter
+                                         'x': 0.5,
+                                         'xanchor': 'center',
+                                         'yanchor': 'top'
+                                     },
+                                     height=800,
+                                     width=1050,
+                                     legend=dict(
+                                         orientation="h",
+                                         yanchor="bottom",
+                                         y=-0.5,  # Adjusted position
+                                         xanchor="center",
+                                         x=0.5
+                                     ),
+                                     margin=dict(l=40, r=40, t=80, b=200),  # Increase the top margin for padding
+                                     hoverlabel=dict(
+                                         bgcolor="white",
+                                         font_size=16,
+                                         font_family="Calibri"
+                                     )
+                                     )
 
         line_plot_grid.update_annotations(font_size=10)  # Reduce font size for subplot titles
-        line_plot_grid.update_xaxes(tickangle=45, tickfont=dict(size=10)) # Update Tick Angles and Axis Font Size
+        line_plot_grid.update_xaxes(tickangle=45, tickfont=dict(size=10))  # Update Tick Angles and Axis Font Size
 
         return line_plot_grid
     
+
     def create_combined_figure(self, fig1: go.Figure, fig2: go.Figure,
                                title: str, subplot_titles: tuple) -> go.Figure:
         """
