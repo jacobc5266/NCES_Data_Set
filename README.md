@@ -34,7 +34,7 @@ Regional Level Analysis:
 **Please Note:** Binder may take a few moments to prepare the environment. I appreciate your patience. Upon loading, execute the notebook by selecting "Restart Kernel and Run All Cells" to see the analysis in action.
 
 **Interactive Tableau Dashboard:**  
-Explore the disparities in tech and vocational educational expenses from 2010 to 2020 through this [Tableau Public Dashboard](https://public.tableau.com/views/TechVocationalEducationalExpenseDisparities20102020/TechVocationalEducationSpendingDisparities?:language=en-US&:display_count=n&:origin=viz_share_link).
+Explore the disparities in tech and vocational educational expenses from 2010 to 2020 through this [Tableau Public Dashboard](https://public.tableau.com/app/profile/jacob.candelaria/viz/TechVocationalEducationalExpenseDisparities20102020/TechVocationalEducationSpendingDisparities).
 
 ## Setup
 
