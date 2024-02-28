@@ -183,6 +183,38 @@ class Utilities:
         return mean_growth_rate
 
 
+    def get_single_value_from_df(self, df : pd.DataFrame, filter_criteria : dict, target_column : str):
+        """
+        Filters a DataFrame based on a dictionary of criteria and extracts a single value from the target column.
+
+        Parameters:
+        - df (pd.DataFrame): The DataFrame to filter.
+        - filter_criteria (dict): A dictionary where keys are column names and values are the values to filter by.
+        - target_column (str): The name of the column from which to extract the single value.
+
+        Returns:
+        - The single value from the target column after filtering, or None if no such value exists.
+        """
+
+        # Generate boolean masks and combine them
+        mask = np.logical_and.reduce([df[k] == v for k, v in filter_criteria.items()])
+        
+        # Apply the mask
+        filtered_df = df[mask]
+
+        # Extract the single value from the target column, if possible
+        if not filtered_df.empty and target_column in filtered_df:
+            # Ensures there's exactly one value to extract, to safely use .item()
+            if len(filtered_df[target_column]) == 1:
+                return filtered_df[target_column].item()
+            else:
+                print("Warning: Filter criteria did not result in a unique row. Adjust the criteria.")
+                return None
+        else:
+            print("No matching data found or target column not in DataFrame.")
+            return None
+
+
     ############################## Graph Functions ##############################
     """
     The subsequent lines of code contain various functions for creating different types of charts. 
